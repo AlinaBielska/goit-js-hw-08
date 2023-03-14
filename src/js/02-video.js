@@ -13,10 +13,12 @@ const LOCALSTORAGE_KEY = "videoplayer-current-time";
     player.getVideoTitle().then(function(title) {
         console.log('title:', title);
     });
-    const onPlay = function(e) {
-        const savedTime = e.seconds;
-        saveInLocalStorage(LOCALSTORAGE_KEY, savedTime);
-    };
+
+  
+const onPlay = function(e) {
+ const savedTime = e.seconds;
+ saveInLocalStorage(LOCALSTORAGE_KEY, savedTime);
+ };
 
 
 const saveInLocalStorage = (key, value) => {
