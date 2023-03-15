@@ -5,13 +5,15 @@ const KEY_STORAGE = "feedback-form-state";
 
 let formMemory = {};
 
-form.addEventListener("input", throttle(setLocalStorage, 500));
-
 const setLocalStorage = e => {
     e.preventDefault();
     saveLocalStorage(KEY_STORAGE, formMemory);
     formMemory[e.target.name] = e.target.value;
 }
+
+form.addEventListener("input", throttle(setLocalStorage, 500));
+
+
 
 const saveLocalStorage = (key, value) => {
   try {
@@ -22,8 +24,6 @@ const saveLocalStorage = (key, value) => {
   }
 };
 
-const formFromStorage = loadLocalStorage(KEY_STORAGE);
-
 const loadLocalStorage = key => {
   try {
     const serializedState = localStorage.getItem(key);
@@ -33,6 +33,8 @@ const loadLocalStorage = key => {
   }
 };
 
+const formFromStorage = loadLocalStorage(KEY_STORAGE);
+
 //uzupełnić pola w formularzu
 if (formFromStorage) {
     for (const key in formFromStorage) {
@@ -40,10 +42,10 @@ if (formFromStorage) {
     }
 }
 
-form.addEventListener("submit", cleanForm);
-
 const cleanForm = e => {
     console.log(formMemory);
     localStorage.removeItem("KEY_STORAGE");
     
 }
+
+form.addEventListener("submit", cleanForm);
