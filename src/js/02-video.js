@@ -52,7 +52,4 @@ export default {
 
 const savedTime = loadFromLocaleStorage(LOCALSTORAGE_KEY);
 
-player
-  .setCurrentTime(savedTime)
-  .then(function (seconds) { })
-  .catch(function (error) { });
+player.setCurrentTime(savedTime).then(function (seconds) { }).catch(function (error) { });
