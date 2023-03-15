@@ -1,9 +1,11 @@
+import throttle from 'lodash.throttle';
+
 const form = document.querySelector("form");
 const KEY_STORAGE = "feedback-form-state";
 
 let formMemory = {};
 
-form.addEventListener("input", setLocalStorage);
+form.addEventListener("input", throttle(setLocalStorage, 500));
 
 const setLocalStorage = e => {
     e.preventDefault();
