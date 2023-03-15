@@ -44,7 +44,7 @@ if (formFromStorage) {
 
 const cleanForm = e => {
     console.log(formMemory);
-    localStorage.removeItem("KEY_STORAGE");
+    localStorage.removeItem(KEY_STORAGE);
     
 }
 
