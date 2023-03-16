@@ -504,21 +504,14 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"fFZ34":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 var _player = require("@vimeo/player");
 var _playerDefault = parcelHelpers.interopDefault(_player);
 var _lodashThrottle = require("lodash.throttle");
 var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 const iframe = document.querySelector("iframe");
-const player = new (0, _playerDefault.default)("iframe");
+const player = new (0, _playerDefault.default)(iframe);
 const LOCALSTORAGE_KEY = "videoplayer-current-time";
-player.on("play", function() {
-    console.log("played the video!");
-});
-player.getVideoTitle().then(function(title) {
-    console.log("title:", title);
-});
-const onPlay = function(e) {
+const onPlay = (e)=>{
     const savedTime1 = e.seconds;
     saveInLocalStorage(LOCALSTORAGE_KEY, savedTime1);
 };
@@ -530,7 +523,7 @@ const saveInLocalStorage = (key, value)=>{
         console.error("Return error: ", error.message);
     }
 };
-player.on("timeupdate", _.throttle(onPlay, 1000));
+player.on("timeupdate", (0, _lodashThrottleDefault.default)(onPlay, 1000));
 const loadFromLocaleStorage = (key)=>{
     try {
         const dataInLocalStorage = localStorage.getItem(key);
@@ -538,10 +531,6 @@ const loadFromLocaleStorage = (key)=>{
     } catch (error) {
         console.error("Return errorr: ", error.message);
     }
-};
-exports.default = {
-    saveInLocalStorage,
-    loadFromLocaleStorage
 };
 const savedTime = loadFromLocaleStorage(LOCALSTORAGE_KEY);
 player.setCurrentTime(savedTime).then(function(seconds) {}).catch(function(error) {});

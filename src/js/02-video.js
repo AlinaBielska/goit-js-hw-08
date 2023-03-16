@@ -3,19 +3,11 @@ import throttle from 'lodash.throttle';
 
 
 const iframe = document.querySelector('iframe');
-const player = new vimeo('iframe');
+const player = new vimeo(iframe);
 const LOCALSTORAGE_KEY = "videoplayer-current-time";
 
-
-    player.on('play', function() {
-        console.log('played the video!');
-    });
-    player.getVideoTitle().then(function(title) {
-        console.log('title:', title);
-    });
-
   
-const onPlay = function(e) {
+const onPlay = e => {
  const savedTime = e.seconds;
  saveInLocalStorage(LOCALSTORAGE_KEY, savedTime);
  };
@@ -31,7 +23,7 @@ const saveInLocalStorage = (key, value) => {
 };
 
 
-player.on('timeupdate', _.throttle(onPlay, 1000));
+player.on('timeupdate', throttle(onPlay, 1000));
 
 
 const loadFromLocaleStorage = key => {
@@ -41,12 +33,6 @@ const loadFromLocaleStorage = key => {
   } catch (error) {
     console.error("Return errorr: ", error.message);
   }
-};
-
-
-export default {
-  saveInLocalStorage,
-  loadFromLocaleStorage,
 };
 
 
