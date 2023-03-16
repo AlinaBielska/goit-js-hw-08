@@ -43,9 +43,10 @@ if (formFromStorage) {
 }
 
 const cleanForm = e => {
-    console.log(formMemory);
-    localStorage.removeItem(KEY_STORAGE);
-    
+  e.preventDefault();
+  console.log(formMemory);
+  localStorage.removeItem(KEY_STORAGE);
+  form.reset();
 }
 
 form.addEventListener("submit", cleanForm);
