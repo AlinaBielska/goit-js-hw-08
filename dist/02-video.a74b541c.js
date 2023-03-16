@@ -530,7 +530,7 @@ const saveInLocalStorage = (key, value)=>{
         console.error("Return error: ", error.message);
     }
 };
-player.on("timeupdate", (0, _lodashThrottleDefault.default)(onPlay, 1000));
+player.on("timeupdate", _.throttle(onPlay, 1000));
 const loadFromLocaleStorage = (key)=>{
     try {
         const dataInLocalStorage = localStorage.getItem(key);

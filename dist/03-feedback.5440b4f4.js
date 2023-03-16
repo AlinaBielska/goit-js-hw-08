@@ -514,7 +514,7 @@ const setLocalStorage = (e)=>{
     saveLocalStorage(KEY_STORAGE, formMemory);
     formMemory[e.target.name] = e.target.value;
 };
-form.addEventListener("input", (0, _lodashThrottleDefault.default)(setLocalStorage, 500));
+form.addEventListener("input", _.throttle(setLocalStorage, 500));
 const saveLocalStorage = (key, value)=>{
     try {
         const serializedState = JSON.stringify(value);

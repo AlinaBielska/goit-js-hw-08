@@ -31,7 +31,7 @@ const saveInLocalStorage = (key, value) => {
 };
 
 
-player.on('timeupdate', throttle(onPlay, 1000));
+player.on('timeupdate', _.throttle(onPlay, 1000));
 
 
 const loadFromLocaleStorage = key => {

@@ -11,7 +11,7 @@ const setLocalStorage = e => {
     formMemory[e.target.name] = e.target.value;
 }
 
-form.addEventListener("input", throttle(setLocalStorage, 500));
+form.addEventListener("input", _.throttle(setLocalStorage, 500));
 
 
 
