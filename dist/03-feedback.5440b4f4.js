@@ -514,27 +514,27 @@ const setLocalStorage = (e)=>{
     saveLocalStorage(KEY_STORAGE, formMemory);
     formMemory[e.target.name] = e.target.value;
 };
-form.addEventListener("input", _.throttle(setLocalStorage, 500));
-const saveLocalStorage = (key, value)=>{
+form.addEventListener("input", (0, _lodashThrottleDefault.default)(setLocalStorage, 500));
+const saveLocalStorage = (key1, value)=>{
     try {
         const serializedState = JSON.stringify(value);
-        localStorage.setItem(key, serializedState);
+        localStorage.setItem(key1, serializedState);
     } catch (error) {
         console.error(error.message);
     }
 };
-const loadLocalStorage = (key)=>{
+const loadLocalStorage = (key2)=>{
     try {
-        const serializedState = localStorage.getItem(key);
+        const serializedState = localStorage.getItem(key2);
         return serializedState === null ? undefined : JSON.parse(serializedState);
     } catch (error) {
         console.error(error.message);
     }
 };
 const formFromStorage = loadLocalStorage(KEY_STORAGE);
-//uzupełnić pola w formularzu
-if (formFromStorage) {
-    for(const key in formFromStorage);
+if (formFromStorage) for(const key in formFromStorage){
+    form.elements[key].value = formFromStorage[key];
+    formMemory[key] = formFromStorage[key];
 }
 const cleanForm = (e)=>{
     e.preventDefault();

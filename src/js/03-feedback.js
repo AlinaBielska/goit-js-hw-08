@@ -11,8 +11,7 @@ const setLocalStorage = e => {
     formMemory[e.target.name] = e.target.value;
 }
 
-form.addEventListener("input", _.throttle(setLocalStorage, 500));
-
+form.addEventListener("input", throttle(setLocalStorage, 500));
 
 
 const saveLocalStorage = (key, value) => {
@@ -35,10 +34,11 @@ const loadLocalStorage = key => {
 
 const formFromStorage = loadLocalStorage(KEY_STORAGE);
 
-//uzupełnić pola w formularzu
+
 if (formFromStorage) {
     for (const key in formFromStorage) {
-        
+      form.elements[key].value = formFromStorage[key];
+      formMemory[key] = formFromStorage[key];
     }
 }
 
